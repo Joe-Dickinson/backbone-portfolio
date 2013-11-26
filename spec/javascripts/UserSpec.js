@@ -4,8 +4,7 @@ describe("The User Model", function() {
   beforeEach(function() {
     user = new app.models.User({
       firstName: "Dan",
-      lastName: "Garland",
-      cid: 1
+      lastName: "Garland"
     });
   });
 
@@ -22,11 +21,11 @@ describe("The User Model", function() {
   });
 
   it("should have a cid", function() {
-    expect(user.cid()).not.toBeNull();
+    expect(user.cid).not.toBeNull();
   });
 
   it("should not have an id", function() {
-    expect(user.id()).toBeUndefined();
+    expect(user.id).toBeUndefined();
   })
 
   describe("Persistance in local storage", function() {
@@ -39,10 +38,48 @@ describe("The User Model", function() {
     });
 
     it("should also be able to retreive it from the store", function() {
-      var user = new app.models.User({ id: user.id });
+      var new_user = new app.models.User({ id: user.id });
       new_user.fetch();
       expect(new_user.get("firstName")).toBe("Dan");
-      expect(new_user..get("lastName")).toBe("Garland");
+      expect(new_user.get("lastName")).toBe("Garland");
+    });
+  });
+
+  describe("fullName", function() {
+    var user;
+    beforeEach(function() {
+      user = new app.models.User();
+    }); //
+
+    describe("firstName only", function() {
+      beforeEach(function() {
+        user.set("firstName", "Dan");
+      });
+
+      it("should set only the firstName", function() {
+        expect(user.get("fullName")).toBe("Dan");
+      });
+    });
+
+    describe("lastName only", function() {
+      beforeEach(function() {
+        expect(user.set("lastName")).toBe("Garland");
+      });
+
+      it("should set only the lastName", function() {
+        expect(user.get("lastName")).toBe("Garland");
+      });
+    });
+
+    describe("both firstName and lastName", function() {
+      beforeEach(function() {
+        user.set("firstName", "Dan");
+        user.set("lastName", "Garland");
+      });
+
+      it("should set only the firstName", function() {
+        expect(user.get("fullName")).toBe("Dan Garland");
+      });
     });
   });
 });
