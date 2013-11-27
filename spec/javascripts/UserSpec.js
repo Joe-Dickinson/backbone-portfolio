@@ -2,9 +2,12 @@ describe("The User Model", function() {
   var user;
 
   beforeEach(function() {
+    localStorage.clear();
     user = new app.models.User({
       firstName: "Dan",
-      lastName: "Garland"
+      lastName: "Garland",
+      bio: "",
+      mission: ""
     });
 
     someoneElse = new app.models.User();
@@ -13,10 +16,12 @@ describe("The User Model", function() {
 
   describe("with some projects", function() {
     beforeEach(function() {
+      localStorage.clear(); 
+      user.save();
+
       user.projects.add(new app.models.Project({
         title: "My Amazing Project"
       }));
-      user.save();
     });
 
     it("should have one project", function() {
@@ -25,7 +30,8 @@ describe("The User Model", function() {
 
     it("should still have a project when we reload the user", function() {
       user.fetch();
-      console.log("break")
+      user.projects.fetch();
+      expect(user.projects.length).toBe(1);
     });
   });
 

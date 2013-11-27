@@ -67,23 +67,6 @@ describe("Project List", function() {
       expect(projects.get(lastProject.cid)).toBe(lastProject);
     });
   });
-    // describe ("saving projects", function() {
-    //   beforeEach(function() {
-    //     projects.sync('create', projects);
-    //   });
-
-    //   it("should save each of the projects", function() {
-    //     projects.forEach(function(project) {
-    //       expect(projects.first().id).not.toBeNull();
-    //     });
-    //   });
-
-    //   it("should fetch from the backing store", function() {
-    //     var newProjects = new app.collections.ProjectList();
-    //     newProjects.fetch();
-    //     expect(newProjects.length).toBe(3);
-    //   });
-    // });
 
   describe("saving individual projects", function() {
     var lastProject;

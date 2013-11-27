@@ -6,9 +6,6 @@ app.models.Project = Backbone.Model.extend({
     this.bind("change", this.updateTitle);
   },
 
-  // updateTitle: function() {
-  //   this.attributes.title += " Changed";
-  // },
 
   validate: function() {
     if(this.attributes.url === "") {

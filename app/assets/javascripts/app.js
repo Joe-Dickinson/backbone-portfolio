@@ -1,43 +1,59 @@
 $(document).ready(function() {
-  // Try to find projects already in the local storage
-  var projectList = new app.collections.ProjectList();
-  projectList.fetch();
+  // // Try to find projects already in the local storage
+  // var projectList = new app.collections.ProjectList();
+  // projectList.fetch();
 
-  // Create a dummy project if there isn't one already
-  if(projectList.length == 0) {
-    var bucket_list = projectList.create({
-      title: "Bucketlist",
-      url: "https://github.com/dmgarland/BucketListApp",
-      body: "<p>I worked on a Rails application that created a todo list of things I want to do before I die.</p> <ul> <li>I integrated Google maps and used Geocoding to determine where my activities would take place.</li> <li>I used AJAX to asynchronously update markers on the map when the center changed.</li> <li>I displayed crime statistics on a chart using an API call and Morris.js</li> </ul>"
-    });
-  }
+  // // Create a dummy project if there isn't one already
+  // if(projectList.length == 0) {
+  //   var bucket_list = projectList.create({
+  //     title: "Bucketlist",
+  //     url: "https://github.com/dmgarland/BucketListApp",
+  //     body: "<p>I worked on a Rails application that created a todo list of things I want to do before I die.</p> <ul> <li>I integrated Google maps and used Geocoding to determine where my activities would take place.</li> <li>I used AJAX to asynchronously update markers on the map when the center changed.</li> <li>I displayed crime statistics on a chart using an API call and Morris.js</li> </ul>"
+  //   });
+  // }
 
-  // Create a blank project for us to fill in.
-  projectList.add({
-    title: "New Project",
-    url: "Click to edit",
-    body: "Click to edit"
+  // // Create a blank project for us to fill in.
+  // projectList.add({
+  //   title: "New Project",
+  //   url: "Click to edit",
+  //   body: "Click to edit"
+  // });
+
+  // projectList.forEach(function(project) {
+  //   var view = new app.views.ProjectView({ model: project });
+  //   $('#project-list').append(view.render().el);
+  // });
+
+  // var me = new app.models.User({
+  me = new app.models.User({
+    firstName: "Joe",
+    lastName: "Dickinson", 
+    bio: "Synergistic upward-trending methodology expert",
+    mission: "Mission: To streamline proactive supply-chains"
   });
 
-  projectList.forEach(function(project) {
-    var view = new app.views.ProjectView({ model: project });
-    $('#project-list').append(view.render().el);
-  });
+  me.save();
+  me.projects.fetch();
 
-  var me = new app.models.User({
-    // if(localStorage === null) {
-      firstName: "Joe",
-      lastName: "Dickinson", 
-      bio: "Synergistic upward-trending methodology expert",
-      mission: "Mission: To streamline proactive supply-chains"
-    // }
-  });
+  // me.projects.create({
+  //   title: "Duck Hunt",
+  //   url: "www.example.com",
+  //   body: "<p> I recreated Duck Hunt using Javascript </p>"
+  // });
 
   var userView = new app.views.UserView({  
-    model: me
+    model: me 
   });
-  $('#user-profile').html(userView.render().el);
+
+  var projectListView = new app.views.ProjectListView({
+    collection: me.projects
+  })
+
+  $('#user-profile').html(userView.render().el); 
+  $('#project-list').html(projectListView.render().el);
 });
+
+
   // Create a view for the first Project and render it
   // var view = new app.views.ProjectView({ model: projectList.first() });
   // $('#project-list').append(view.render().el);

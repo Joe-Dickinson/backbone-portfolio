@@ -5,7 +5,8 @@ app.views.ProjectView = Backbone.View.extend({
   template: _.template($('#project-template').html()),
   events: {
     'dblclick .project-name': 'editProjectName',
-    'keypress .edit-title': 'updateTitle'
+    'keypress .edit-title': 'updateTitle',
+    'click .remove-project': 'deleteProject'
   },
 
   render: function() {
@@ -27,5 +28,13 @@ app.views.ProjectView = Backbone.View.extend({
     this.model.set('title', new_title);
     this.model.save();
     this.$el.find('.edit-title').val('').hide().prev('h3').show().html(new_title);
+  },
+
+   deleteProject: function() {
+    var projects = this.model.collection;
+    projects.remove(this.model);
+    this.model.destroy();
+    // projects.sync();
+    console.log("Delete");
   }
 });
