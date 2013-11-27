@@ -24,7 +24,20 @@ $(document).ready(function() {
     $('#project-list').append(view.render().el);
   });
 
+  var me = new app.models.User({
+    // if(localStorage === null) {
+      firstName: "Joe",
+      lastName: "Dickinson", 
+      bio: "Synergistic upward-trending methodology expert",
+      mission: "Mission: To streamline proactive supply-chains"
+    // }
+  });
+
+  var userView = new app.views.UserView({  
+    model: me
+  });
+  $('#user-profile').html(userView.render().el);
+});
   // Create a view for the first Project and render it
   // var view = new app.views.ProjectView({ model: projectList.first() });
   // $('#project-list').append(view.render().el);
-});

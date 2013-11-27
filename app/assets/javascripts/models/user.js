@@ -3,7 +3,8 @@ app.models.User = Backbone.Model.extend({
   localStorage: new Backbone.LocalStorage('portfolio-user'),
 
   initialize: function() {
-    this.bind("change:firstName change:lastName", this.setFullName);
+    // this.bind("change:firstName change:lastName", this.setFullName);
+    this.setFullName();
   },
 
   setFullName: function() {
@@ -11,10 +12,15 @@ app.models.User = Backbone.Model.extend({
   },
 
   getName: function() {
-      return _.compact([this.get("firstName"), this.get("lastName")]).join(" ");
-    }
+    return _.compact([this.get("firstName"), this.get("lastName")]).join(" ");
+  },
 
-    return this.get("firstName") + " " + this.get("lastName");
+  validate: function(attrs) {
+    if(attrs.title === undefined) {
+      return { message: "First Name must be defined" };
+    } else if(attr.lastName === undefined) {
+      return { message: "Last Name must be defined" };
+    }
   }
 });
 

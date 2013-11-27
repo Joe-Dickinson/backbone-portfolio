@@ -56,6 +56,9 @@ ul {
 
 .bio-image {
   float: left;
+  /*height: auto;
+  width: auto;*/
+/*  max-width: 100%;*/
 }
 
 .bio-text {

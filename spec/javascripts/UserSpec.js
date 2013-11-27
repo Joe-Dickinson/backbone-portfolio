@@ -38,7 +38,7 @@ describe("The User Model", function() {
     });
 
     it("should also be able to retreive it from the store", function() {
-      var new_user = new app.models.User({ id: user.id });
+      var user = new app.models.User({ id: user.id });
       new_user.fetch();
       expect(new_user.get("firstName")).toBe("Dan");
       expect(new_user.get("lastName")).toBe("Garland");
@@ -79,6 +79,32 @@ describe("The User Model", function() {
 
       it("should set only the firstName", function() {
         expect(user.get("fullName")).toBe("Dan Garland");
+      });
+    });
+
+    describe("validation", function() {
+      it("should be invalid without firstName", function() {
+        user.set("firstName", undefined);
+        expect(user.isValid()).toBeFalsy();
+        expect(user.validationError.message).toEqual("First Name must be defined");
+      });
+
+      it("should be invalid without firstName", function() {
+        user.set("lastName", undefined);
+        expect(user.isValid()).toBeFalsy();
+        expect(user.validationError.message).toEqual("Last Name must be defined");
+      });
+
+      it("should be invalid without a firstName", function() {
+        user.set("bio", undefined);
+        expect(user.isValid()).toBeFalsy();
+        expect(user.validationError.message).toEqual("Bio must be defined");
+      });
+
+      it("should be invalid without a Mission", function() {
+        user.set("mission", undefined);
+        expect(user.isValid()).toBeFalsy();
+        expect(user.validationError.message).toEqual("Mission must be defined");
       });
     });
   });
