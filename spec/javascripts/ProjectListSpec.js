@@ -69,24 +69,27 @@ describe("Project List", function() {
   });
 
   describe("saving individual projects", function() {
-    var lastProject;
-
     beforeEach(function() {
-      var project = new app.models.Project({
-        title: "My Amazing Project"
-      });
-      lastProject = projects.create(project);
+      spyOn($, "ajax");
+      projects.sync("create", projects);
+      lastRequest = $.ajax.mostRecentCall.args[0];
+      expect(lastRequest.url).toEqual("/projects");
+      expect(lastRequest.type).toEqual("POST");
     });
 
     it("should bloody work", function() {
-      expect(projects.length).toBe(1);
-      expect(projects.first().id).not.toBeNull();
+      projects.forEach(function(project) {
+        expect(project.id).not.toBeNull();
+      });
     });
 
     it("should fetch from backing store", function() {
       var someOtherList = new app.collections.ProjectList();
+      spyOn($, "ajax");
       someOtherList.fetch();
-      expect(someOtherList.first().id).toBe(lastProject.id);
+      lastRequest = $.ajax.mostRecentCall.args[0];
+      expect(lastRequest.url).toEqual("/projects");
+      expect(lastRequest.type).toEqual("GET");
     });
   });
 

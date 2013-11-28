@@ -2,7 +2,8 @@ describe("The User Model", function() {
   var user;
 
   beforeEach(function() {
-    localStorage.clear();
+    localStorage.clear(); 
+
     user = new app.models.User({
       firstName: "Dan",
       lastName: "Garland",
@@ -10,13 +11,19 @@ describe("The User Model", function() {
       mission: ""
     });
 
-    someoneElse = new app.models.User();
+    someoneElse = new app.models.User({
+      firstName: "Someone",
+      lastName: "Else",
+      bio: "Bio",
+      mission: "Mission"
+    });
+    someoneElse.save(); 
+
     someoneElse.projects.create(new app.models.Project());
   });
 
   describe("with some projects", function() {
     beforeEach(function() {
-      localStorage.clear(); 
       user.save();
 
       user.projects.add(new app.models.Project({
@@ -29,9 +36,13 @@ describe("The User Model", function() {
     });
 
     it("should still have a project when we reload the user", function() {
-      user.fetch();
-      user.projects.fetch();
-      expect(user.projects.length).toBe(1);
+      var newUser = new app.models.User({ id: user.id });
+      console.log("new user");
+      spyOn($, "ajax");
+      newUser.fetch();
+      var lastRequest = $.ajax.mostRecentCall.args[0];
+      expect(lastRequest["url"]).toEqual("/users");
+      expect(lastRequest["type"]).toEqual("GET");
     });
   });
 
