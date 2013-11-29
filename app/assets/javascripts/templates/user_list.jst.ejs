@@ -1,0 +1,10 @@
+ <h2> All Users </h2>
+
+    <ul>
+      <% users.each(function(user) { %>
+        <li>
+          <a href="#" class="user-link" data-user-id="<%= user.id %>">
+            <%= user.get("full_name") %>
+          </a>
+        </li>
+    <% }) %>

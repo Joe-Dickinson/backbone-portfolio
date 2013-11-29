@@ -1,0 +1,19 @@
+<div id="bio">
+    <img src="uploads/me.jpg" width="200" height="200" alt="Dan Garland"
+    class="bio-image shadowed" />
+
+    <div class="bio-text">
+      <h1 class="name"> <%= user.fullName %> </h1>
+      <input type="text" id="edit-user-name" class="hidden-edit"> 
+
+      <h2 class="bio">
+        <%= user.bio %>
+      </h2>
+      <input type="text" id="edit-user-bio" class="hidden-edit">
+
+      <h3 class="mission">
+        <%= user.mission %>
+      </h3>
+      <input type="text" id="edit-user-mission" class="hidden-edit">
+    </div>
+  </div>
