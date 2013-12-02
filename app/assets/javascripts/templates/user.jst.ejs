@@ -3,7 +3,7 @@
     class="bio-image shadowed" />
 
     <div class="bio-text">
-      <h1 class="name"> <%= user.fullName %> </h1>
+      <h1 class="name"> <%= user.full_name %> </h1> 
       <input type="text" id="edit-user-name" class="hidden-edit"> 
 
       <h2 class="bio">
@@ -12,6 +12,7 @@
       <input type="text" id="edit-user-bio" class="hidden-edit">
 
       <h3 class="mission">
+        Mission:
         <%= user.mission %>
       </h3>
       <input type="text" id="edit-user-mission" class="hidden-edit">

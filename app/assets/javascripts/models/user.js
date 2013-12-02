@@ -1,14 +1,18 @@
 app.models.User = Backbone.Model.extend({
-
-  localStorage: new Backbone.LocalStorage('portfolio-user'),
+  urlRoot: '/users',
 
   initialize: function() {
     this.projects = new app.collections.ProjectList();
     this.projects.user = this;
-    this.bind("change:firstName change:lastName", this.setFullName); //
+    this.bind("change:first_name change:last_name", this.setFullName); //
     this.bind("sync", this.getProjects); //fetch?
     this.bind("fetch", this.getProjects); //<<
+    // this.bind("click #addProject", this.addProject); //users is not defined. out of scope once initialized
     this.setFullName();
+  },
+
+  events: {
+    "click #addProject" : "addProject"
   },
 
   getProjects: function(){
@@ -20,11 +24,15 @@ app.models.User = Backbone.Model.extend({
   },
 
   setFullName: function() {
-    this.set("fullName", this.getName());
+    this.set("full_name", this.getName());
   },
 
   getName: function() {
-    return _.compact([this.get("firstName"), this.get("lastName")]).join(" ");
+    return _.compact([this.get("first_name"), this.get("last_name")]).join(" ");
+  },
+
+  addProject: function() {
+    console.log("Add project!");
   }
 
   // validate: function(attrs) {

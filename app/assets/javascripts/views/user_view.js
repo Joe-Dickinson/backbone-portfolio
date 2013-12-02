@@ -1,8 +1,8 @@
 app.views.UserView = Backbone.View.extend({
 
-  tagName: 'div', 
-  className: 'user', 
-  template: _.template($('#user-template').html()),
+  tagName: 'div',
+  className: 'user',
+  template: JST['templates/user'],
   events: {
     'click h1.name' : 'editName',
     'click h2.bio' : 'editBio',
@@ -44,7 +44,7 @@ app.views.UserView = Backbone.View.extend({
   },
 
   updateName: function(event) {
-    this.model.set("fullName", $('#edit-user-name').val()); 
+    this.model.set("full_name", $('#edit-user-name').val());  //snake_case
   },
 
   updateBio: function(event) {

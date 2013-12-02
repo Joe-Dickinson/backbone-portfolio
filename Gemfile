@@ -23,6 +23,10 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'ejs', "~> 1.1.1"
 
+gem 'pry'
+
+gem 'pry-byebug'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

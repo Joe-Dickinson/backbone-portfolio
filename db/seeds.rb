@@ -8,3 +8,5 @@
   @bs = Faker::Company.bs
   @catch_phrase = Faker::Company.catch_phrase
   User.create!(:first_name => "Joe", :last_name => "Dickinson", :bio => "#{@catch_phrase} expert", :mission => "To #{@bs}")
+
+  Project.create!(:title => "New Project", :url => "www.example.com", :body => "body text", :user_id => 1)

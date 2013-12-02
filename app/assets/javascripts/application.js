@@ -10,4 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
+//= require ./lib/jquery-1.9.1.min
+//= require ./lib/underscore-min.js
+//= require ./lib/boot.js
+//= require_tree ./lib
+//= require router
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./templates
+//= require_tree ./views
+//= require app

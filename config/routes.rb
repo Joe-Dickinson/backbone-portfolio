@@ -3,6 +3,7 @@ BackbonePortfolio::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   resources :users
   resources :projects
+  root to: 'pages#home'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

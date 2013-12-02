@@ -2,7 +2,7 @@ app.views.ProjectView = Backbone.View.extend({
 
   tagName: 'div',
   className: 'project',
-  template: _.template($('#project-template').html()),
+  template: JST['templates/project'], //<<not user_list
   events: {
     'dblclick .project-name': 'editProjectName',
     'keypress .edit-title': 'updateTitle',
@@ -10,7 +10,20 @@ app.views.ProjectView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+    // var locals = 
+    // var locals = { project: { 
+    //   this.model: "title", 
+    //   this.model: "url", 
+    //   this.model: "body" }
+    // };
+
+    //this.template;
+    //this.template();  // render :partial => '/templates/project', :locals => { }
+     var locals = {
+    project: this.model.attributes
+    };
+
+    this.$el.html(this.template(locals));
     return this;
   },
 

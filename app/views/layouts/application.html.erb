@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>BackbonePortfolio</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <title>My Amazing Fat Client Portfolio Builder</title>
+  <link rel="stylesheet" href="/assets/main.css">
 </head>
+
 <body>
 
-<%= yield %>
+  <section id="navigation">
+  </section>
+
+  <section id="content">
+
+    <div id="user-profile"> </div>
+
+    <div id="projects">     
+
+      <div id="project-list">
+      </div>
+    
+      <div class="clear"></div>
+    </div>
+  </section>
+
+  <section id="footer">
+  </section>
+
+  <!-- Load application scripts at the end of the body, so that we
+  don't slow up the loading time of the DOM -->
+  <%= javascript_include_tag :application %>
+
 
 </body>
+
 </html>

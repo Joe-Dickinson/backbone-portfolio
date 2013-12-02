@@ -3,7 +3,7 @@ app.Router = Backbone.Router.extend({
   routes: {
     '': "userIndex",
     'users': "userIndex",
-    '/users/:id': "userShow"
+    'users/:id': "userShow"
   },
 
   userIndex: function() {
@@ -14,7 +14,7 @@ app.Router = Backbone.Router.extend({
           collection: users
         });
 
-        $('#user-template').html(view.render().el); //<<<
+        $('#content').html(view.render().el); //<<<
       }
     });
   },
@@ -23,35 +23,32 @@ app.Router = Backbone.Router.extend({
   userShow: function(id) { //show
 
     me = new app.models.User({
-      id: id,
-      firstName: "Joe",
-      lastName: "Dickinson",
-      bio: "Synergistic upward-trending methodology expert",
-      mission: "Mission: To streamline proactive supply-chains"
+      id: id
     });
 
-    me.save(); //<
-    // me.projects.fetch({}); //<
+    console.log("1");
 
     me.fetch({
       success: function(me) {
+        console.log("3");
         var userView = new app.views.UserView({
           model: me
         });
+
+        var projectListView = new app.views.ProjectListView({
+          collection: me.projects
+        });
+
+
+        $('#content').html(userView.render().el); //<
+        $('#content').append(projectListView.render().el);
+        $('#content').append('<div class="clear"></div>');
       }
     });
 
-    var userView = new app.views.UserView({
-      model: me
-    });
+    console.log("2");
 
-    var projectListView = new app.views.ProjectListView({
-      collection: me.projects
-    });
-
-
-    $('#user-profile').html(userView.render().el); //<
-    $('#project-list').html(projectListView.render().el); //<
+    //<
     //}); //??
   }
 });

@@ -7,8 +7,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(parms[:id])
+    user = User.find(params[:id])
     user.update_attributes!
     render :nothing => true
+  end
+
+  def show
+    # binding.pry
+    user = User.find(params[:id])
+    # binding.pry
+    render :json => user  #< user.projects
   end
 end

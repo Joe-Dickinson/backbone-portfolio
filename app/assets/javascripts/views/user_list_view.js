@@ -2,7 +2,7 @@ app.views.UserListView = Backbone.View.extend ({
 
   tagName: 'div',
   className: 'user-list',
-  template: _.template($('#user-list-template').html()),
+  template: JST['templates/user_list'],
 
   events: {
     'click .user-link': 'showUser'
@@ -19,6 +19,13 @@ app.views.UserListView = Backbone.View.extend ({
 
     this.$el.html(template_html); //move?
     return this;
+  },
+
+  showUser: function(event) {
+    event.preventDefault();
+    var id = $(event.currentTarget).data('user-id');
+    new app.Router().navigate('users/' + id, {trigger: true});
+
   }
 
-})
+});

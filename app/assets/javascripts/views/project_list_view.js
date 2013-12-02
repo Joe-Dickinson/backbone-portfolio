@@ -2,8 +2,9 @@ app.views.ProjectListView = Backbone.View.extend({
 
   tagName: 'div',
   className: 'project-list',
-  template: _.template($("#project-list-template").html()),
-
+  // template: _.template($("#project-list-template").html()),
+  template: JST['templates/project_list'],
+  
   events: {
     'click #add-project': 'newProject'
   },
@@ -19,9 +20,10 @@ app.views.ProjectListView = Backbone.View.extend({
     this.$el.html(this.template());
 
     this.collection.forEach(function(project) {
-      var view = new app.views.ProjectView({ model: project });
+      var view = new app.views.ProjectView({ model: project }); //2nd time, this is the window
       _this.$el.append(view.render().el);
     });
+
 
     return this;
   },
@@ -35,8 +37,7 @@ app.views.ProjectListView = Backbone.View.extend({
   },
 
   deleteProject: function() {
-
-    console.log("Delete button")
+    console.log("Delete button");
   }
 
 });

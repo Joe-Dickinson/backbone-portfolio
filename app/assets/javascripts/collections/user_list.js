@@ -1,10 +1,13 @@
 app.collections.UserList = Backbone.Collection.extend ({
 
   model: app.models.User,
-  localStorage: new Backbone.LocalStorage('portfolio-user'),
+  url: "/users",
 
   initialize: function() {
-
+    // this.bind("click #addProject", this.addProject);
+    console.log(this);
+    console.log("user_list hello");
+    
   }
 
 
