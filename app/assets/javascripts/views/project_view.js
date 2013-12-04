@@ -6,26 +6,24 @@ app.views.ProjectView = Backbone.View.extend({
   events: {
     'dblclick .project-name': 'editProjectName',
     'keypress .edit-title': 'updateTitle',
-    'click .remove-project': 'deleteProject'
+    'click .remove-project': 'deleteProject',
+    'click .project-link': 'editProjectLink' //<< create
   },
 
   render: function() {
-    // var locals = 
-    // var locals = { project: { 
-    //   this.model: "title", 
-    //   this.model: "url", 
-    //   this.model: "body" }
-    // };
-
-    //this.template;
-    //this.template();  // render :partial => '/templates/project', :locals => { }
-     var locals = {
-    project: this.model.attributes
+    var locals = {
+      project: this.model.attributes
     };
 
+    var skill_list = new app.views.SkillListView({
+      collection: this.model.skills
+    });
+
     this.$el.html(this.template(locals));
+    this.$el.find(".skills").replaceWith(skill_list.render().el);
     return this;
   },
+
 
   editProjectName: function() {
     this.$el.addClass('editing');
@@ -41,6 +39,10 @@ app.views.ProjectView = Backbone.View.extend({
     this.model.set('title', new_title);
     this.model.save();
     this.$el.find('.edit-title').val('').hide().prev('h3').show().html(new_title);
+  },
+
+  editProjectLink: function() {
+    event.preventDefault();
   },
 
    deleteProject: function() {

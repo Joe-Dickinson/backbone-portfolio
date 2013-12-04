@@ -2,6 +2,7 @@ app.models.Project = Backbone.Model.extend({
 
   initialize: function() {
     this.bind("change", this.updateTitle);
+    this.skills = new app.collections.SkillList();
   },
 
 

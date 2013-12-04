@@ -1,4 +1,4 @@
-// app.models.Skill = Backbone.Model.extend ({
+app.models.Skill = Backbone.Model.extend ({
 
 //   localStorage: new Backbone.localStorage('porfolio-skill'), //not yet set
 
@@ -6,6 +6,4 @@
 //     this.bind("change", this.update);//??
 //   }
 
-
-
-// });
+});
