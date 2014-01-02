@@ -3,7 +3,8 @@ app.Router = Backbone.Router.extend({
   routes: {
     '': "userIndex",
     'users': "userIndex",
-    'users/:id': "userShow"
+    'users/:id': "userShow",
+    'users/:id/likes' : "userShow"
   },
 
   userIndex: function() {
@@ -14,13 +15,13 @@ app.Router = Backbone.Router.extend({
           collection: users
         });
 
-        $('#content').html(view.render().el); //<<<
+        $('#content').html(view.render().el);
       }
     });
   },
 
 
-  userShow: function(id) { //show
+  userShow: function(id) {
 
     me = new app.models.User({
       id: id
@@ -40,15 +41,12 @@ app.Router = Backbone.Router.extend({
         });
 
 
-        $('#content').html(userView.render().el); //<
+        $('#content').html(userView.render().el);
         $('#content').append(projectListView.render().el);
         $('#content').append('<div class="clear"></div>');
       }
     });
 
     console.log("2");
-
-    //<
-    //}); //??
   }
 });

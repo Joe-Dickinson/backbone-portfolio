@@ -27,6 +27,14 @@ gem 'pry'
 
 gem 'pry-byebug'
 
+gem 'oauth2'
+
+gem "koala", "~> 1.8.0rc1"
+
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

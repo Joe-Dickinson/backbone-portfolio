@@ -3,6 +3,8 @@ app.models.User = Backbone.Model.extend({
 
   initialize: function() {
     this.projects = new app.collections.ProjectList();
+    this.likes = new app.collections.LikeList();
+    this.likes.user = this;
     this.projects.user = this;
     this.bind("change:first_name change:last_name", this.setFullName); //
     this.bind("sync", this.getProjects); //fetch?
@@ -21,6 +23,14 @@ app.models.User = Backbone.Model.extend({
     this.projects = new app.collections.ProjectList(this.projects.where({userId : this.id}));
     this.projects.user = this;
     return this.projects;
+  },
+
+  getLikes: function(){
+    this.likes.fetch();
+
+    this.likes = new app.collections.LikeList(this.likes.where({userId: this.id}));
+    this.likes.user = this;
+    return this.likes;
   },
 
   setFullName: function() {

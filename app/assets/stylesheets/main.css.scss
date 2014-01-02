@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 html, body {
   margin: 0;
   padding: 0;
@@ -179,7 +181,6 @@ ul.skill-list li {
   text-indent: -9999px;
   background: transparent image-url("delete-icons.png") no-repeat;
   cursor: pointer;
-  margin-left: 870px;
 }
 
 .hidden-edit {
@@ -188,4 +189,18 @@ ul.skill-list li {
 
 .clear {
   clear: both;
+}
+
+.welcome-name {
+  margin-top: 15px;
+}
+
+.navbar {
+  margin-left:100px;
+  margin-right: 100px;
+}
+
+.recent-project-work {
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

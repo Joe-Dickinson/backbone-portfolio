@@ -26,4 +26,8 @@ BackbonePortfolio::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.facebook_app_id = "346005008875179"
+  config.facebook_secret = "653711930fcaa374e645d4844969c3cd"
+
 end

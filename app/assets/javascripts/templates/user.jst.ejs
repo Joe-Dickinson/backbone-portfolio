@@ -1,6 +1,7 @@
 <div id="bio">
-    <img src="uploads/me.jpg" width="200" height="200" alt="Dan Garland"
-    class="bio-image shadowed" />
+  <!--   <img src="uploads/me.jpg" width="200" height="200" alt="Dan Garland"
+    class="bio-image shadowed" /> -->
+    <img src=<% user.image_url %> width="200" height="200" class="bio-image shadowed"/>
 
     <div class="bio-text">
       <h1 class="name"> <%= user.full_name %> </h1> 
@@ -15,6 +16,15 @@
         Mission:
         <%= user.mission %>
       </h3>
+      <br>
       <input type="text" id="edit-user-mission" class="hidden-edit">
+      <h3 class="likes"> 
+        Likes: 
+        
+        blerg 
+
+     
+      </h3>
+      <input type="text" id="edit-user-likes" class="hidden-edit">
     </div>
   </div>

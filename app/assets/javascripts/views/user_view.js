@@ -7,9 +7,11 @@ app.views.UserView = Backbone.View.extend({
     'click h1.name' : 'editName',
     'click h2.bio' : 'editBio',
     'click h3.mission' : 'editMission',
+    'click h3.likes' : 'editLikes',
     'change #edit-user-name' : 'updateName',
     'change #edit-user-bio' : 'updateBio',
-    'change #edit-user-mission' : 'updateMission'
+    'change #edit-user-mission' : 'updateMission',
+    'change #edit-user-likes' : 'updateLikes'
   },
 
   initialize: function() {
@@ -20,9 +22,23 @@ app.views.UserView = Backbone.View.extend({
     var template_html = this.template({
     user: this.model.attributes
     });
+    var _this = this;
+    this.model.likes.fetch({
+      success: function(likes) {
+        // for(i = 0; i < likes.length; i++) {
+        //   console.log("boom!" + i);
+        //   this.model.likes.concat(likes + " ");
+        // }
+        
+        //likes.models.each....
+        _this.model.likes.reset(likes.models);
+        console.log(_this.model.likes.reset(likes.models)[0]);
+      }
+    });
 
     this.$el.html(template_html);
     return this;
+
   },
 
   editName: function(event) {
@@ -39,8 +55,14 @@ app.views.UserView = Backbone.View.extend({
 
   editMission: function(event) {
     var h3 = $(event.currentTarget);
-    $('#edit-user-mission').removeClass('hidden-edit').val(h2.html());
-    h2.hide();
+    $('#edit-user-mission').removeClass('hidden-edit').val(h3.html()); //h2
+    h3.hide(); //h2
+  },
+
+  editLikes: function(event) {
+    var h3 = $(event.currentTarget);
+    $('#edit-user-likes').removeClass('hidden-edit').val(h3.html());
+    h3.hide();
   },
 
   updateName: function(event) {
@@ -53,6 +75,10 @@ app.views.UserView = Backbone.View.extend({
 
   updateMission: function(event) {
     this.model.set("mission", $('#edit-user-mission').val());
+  },
+
+  updateLikes: function(event) {
+    this.model.set("likes", $('#edit-user-likes').val());
   }
 
 });

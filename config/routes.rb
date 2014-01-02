@@ -1,9 +1,26 @@
 BackbonePortfolio::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :users
-  resources :projects
+
   root to: 'pages#home'
+
+  get '/users/authorise_facebook', :to => 'users#authorise_facebook', :as => :login_with_facebook
+  get '/users/facebook_oauth_callback', :to => 'users#facebook_oauth_callback', :as => :facebook_oauth_callback
+  get 'users/:id/likes', :to => 'users#likes', :as => :user_likes
+
+  resources :users do
+    # resources :likes
+  end
+  resources :projects
+
+  # resources :users do
+  #   collection do
+  #     get 'authorise_facebook', :as => :login_with_facebook
+  #   end
+  # resources :projects
+  # root to: 'pages#home'
+  # end
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
