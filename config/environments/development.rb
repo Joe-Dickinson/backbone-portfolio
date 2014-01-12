@@ -27,7 +27,7 @@ BackbonePortfolio::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.facebook_app_id = "346005008875179"
-  config.facebook_secret = "653711930fcaa374e645d4844969c3cd"
+  config.facebook_app_id = "000000000000000"
+  config.facebook_secret = "000000000000000000000000000"
 
 end
